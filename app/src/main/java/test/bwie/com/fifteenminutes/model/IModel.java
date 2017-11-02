@@ -8,4 +8,5 @@ package test.bwie.com.fifteenminutes.model;
  */
 
 public interface IModel {
+      void getdata();
 }
