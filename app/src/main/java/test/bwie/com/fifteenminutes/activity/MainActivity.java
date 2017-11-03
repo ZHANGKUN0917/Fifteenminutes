@@ -1,5 +1,7 @@
 package test.bwie.com.fifteenminutes.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +25,14 @@ import test.bwie.com.fifteenminutes.bean.Bean;
 import test.bwie.com.fifteenminutes.fragment.FragmentA;
 import test.bwie.com.fifteenminutes.fragment.FragmentB;
 import test.bwie.com.fifteenminutes.fragment.FragmentC;
+import test.bwie.com.fifteenminutes.login.Login3Activity;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private LinearLayout ll;
     private ListView lv;
     private List<Bean> list;
+    private SimpleDraweeView sdv;
 
     private FragmentTabHost mTabHost;
     //定义一个布局
@@ -44,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        sdv= (SimpleDraweeView) findViewById(R.id.sdv);
+        Uri uri = Uri.parse("res://test.bwie.com.fifteenminutes/"+R.mipmap.raw_1499936862);
+        sdv.setImageURI(uri);
+        sdv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(MainActivity.this, Login3Activity.class);
+                startActivity(it);
+            }
+        });
         lv= (ListView) findViewById(R.id.lv);
         dl= (DrawerLayout) findViewById(R.id.dl);
         ll= (LinearLayout) findViewById(R.id.ll);
